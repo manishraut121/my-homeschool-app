@@ -37,4 +37,6 @@ my-homeschool-app/
 ├── index.js
 ├── package.json
 └── README.md
+
+new ---
 >>>>>>> 662db44 (Saving changes before pulling)
