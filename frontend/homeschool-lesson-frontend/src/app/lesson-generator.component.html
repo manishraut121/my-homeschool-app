@@ -1,0 +1,58 @@
+<div class="lesson-container">
+    <h2>Homeschool Lesson Generator</h2>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Grade Level</mat-label>
+      <mat-select [(value)]="selectedGrade">
+        <mat-option *ngFor="let grade of gradeLevels" [value]="grade">
+          {{ grade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Subject</mat-label>
+      <mat-select [(value)]="selectedSubject">
+        <mat-option *ngFor="let subject of subjects" [value]="subject">
+          {{ subject }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Interests (comma separated)</mat-label>
+      <input matInput [(ngModel)]="interests" placeholder="e.g. dinosaurs, music">
+    </mat-form-field>
+  
+    <div class="advanced-options" style="margin-bottom: 1em;">
+      <mat-form-field appearance="fill">
+        <mat-label>Learning Style (optional)</mat-label>
+        <input matInput [(ngModel)]="learningStyle" placeholder="e.g. visual">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (minutes, optional)</mat-label>
+        <input matInput type="number" [(ngModel)]="duration">
+      </mat-form-field>
+    </div>
+  
+    <button mat-raised-button color="primary" (click)="generateLesson()">
+      Generate Lesson
+    </button>
+  
+    <div *ngIf="loading" class="loading">
+      <mat-spinner></mat-spinner>
+      <p>Generating lesson...</p>
+    </div>
+  
+    <div *ngIf="errorMsg" class="error">
+      {{ errorMsg }}
+    </div>
+  
+    <div *ngIf="generatedLesson" class="generated-lesson">
+      <h3>{{ generatedLesson.title }}</h3>
+      <pre>{{ generatedLesson | json }}</pre>
+      <!-- You can parse and display sections more elegantly here. -->
+    </div>
+  </div>
+  
